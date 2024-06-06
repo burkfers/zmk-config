@@ -1,0 +1,11 @@
+#include "sensortest.dtsi"
+
+&kscan0 {
+    row-gpios
+        = <&gpio0 10 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+        ;
+
+    col-gpios
+        = <&gpio0 9 GPIO_ACTIVE_HIGH>
+        ;
+};
