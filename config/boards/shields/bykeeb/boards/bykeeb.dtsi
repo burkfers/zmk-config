@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2025, ykz89
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "bykeeb-pinctl.dtsi"
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
