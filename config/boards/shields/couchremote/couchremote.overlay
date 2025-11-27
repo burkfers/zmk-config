@@ -1,0 +1,43 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
+#include "couchremote.dtsi"
+
+/ {
+    glidepoint_listener {
+      compatible = "zmk,input-listener";
+      device = <&glidepoint>;
+      input-processors =
+        <&zip_xy_scaler 2 1>;
+    };
+};
+
+&kscan0 {
+    input-gpios
+      = <&xiao_d  1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP )>
+      , <&xiao_d  0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP )>
+      , <&xiao_d  3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP )>
+      , <&xiao_d  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP )>
+    ;
+};
+
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&xiao_d 7 (GPIO_ACTIVE_LOW)>;
+    glidepoint: glidepoint@0 {
+        status = "okay";
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        dr-gpios = <&xiao_d 6 (GPIO_ACTIVE_HIGH)>;
+        //y-invert;
+        x-invert;
+        //rotate-90;
+
+        sensitivity = "2x";
+    };
+};
+

@@ -1,0 +1,12 @@
+if SHIELD_COUCHREMOTE
+
+config ZMK_KEYBOARD_NAME
+    default "Couchremote"
+
+config ZMK_POINTING
+    default y
+
+config SPI
+    default y
+
+endif
